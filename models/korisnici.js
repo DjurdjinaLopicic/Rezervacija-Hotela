@@ -1,0 +1,61 @@
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Korisnici extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate({Rezervacije}) {
+      // define association here
+      this.hasMany(Rezervacije, {  foreignKey: 'korisnikId', as: 'rezervacije', onDelete:'cascade', hooks: true} );
+    }
+  };
+  Korisnici.init({
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique:true
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [5, 255]
+      }
+    },
+    ime: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    prezime: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: { 
+        isEmail: {  
+          msg: "Nije email" 
+        }
+      }
+    } ,
+    tip: {  // 0 - Admin    1 - Moderator   2 - User
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        min:0,
+        max:2
+      }
+    }
+  }, {
+    sequelize,
+    modelName: 'Korisnici',
+  });
+  return Korisnici;
+};
