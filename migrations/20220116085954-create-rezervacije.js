@@ -18,11 +18,31 @@ module.exports = {
       },
       sobaId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Sobes',
+          key: 'id',
+          as: 'sobaId'
+        }
       },
       korisnikId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Korisnicis',
+          key: 'id',
+          as: 'korisnikId',
+        }
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE
       }
     });
   },

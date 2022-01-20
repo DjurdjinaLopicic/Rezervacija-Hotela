@@ -2,9 +2,8 @@ const express = require("express");
 const path = require('path');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const admin = require('./routes/admin');
 
-const app = express();
+const gradovi = express.Router();;
 
 function getCookies(req){
     if(req.headers.cookie == null) return {};
@@ -35,6 +34,7 @@ function authTokena(req, res, next){
         next();
     })
 }
+
 const request = require('request');
 
 function izvuciTip(req) {
@@ -68,23 +68,30 @@ async function autorizuj(req, res, next){
 
 }
 
-
-
-app.use('/admin', admin);
-
-
-
-app.get('/', authTokena, autorizuj ,(req, res) => {
-    res.redirect('/admin');
+gradovi.get('/', authTokena, autorizuj ,(req, res) => {
+    res.sendFile('gradovi.html', {root: './static/gradovi'});
 })
 
-
-app.get('/login', (req, res) => {
+gradovi.get('/login', (req, res) => {
     res.sendFile('login.html', {root: './static'})
 })
 
-app.use(express.static(path.join(__dirname, 'static')));
+gradovi.get('/prikazi', authTokena, autorizuj ,(req, res) => {
+    res.sendFile('grad.html', {root: './static/gradovi'});
+})
 
-app.listen( {port:8003}, async() => {
-    
-} )
+gradovi.get('/obrisi', authTokena,autorizuj , (req, res) => {
+    res.sendFile('brisiGrad.html', {root: './static/gradovi'});
+})
+
+gradovi.get('/novi', authTokena,autorizuj , (req, res) => {
+    res.sendFile('noviGrad.html', {root: './static/gradovi'});
+})
+
+gradovi.get('/izmeni', authTokena, autorizuj ,(req, res) => {
+    res.sendFile('izmeniGrad.html', {root: './static/gradovi'});
+})
+
+gradovi.use(express.static(path.join(__dirname, 'static')));
+
+module.exports = gradovi;

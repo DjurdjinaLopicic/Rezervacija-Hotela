@@ -6,32 +6,32 @@ module.exports = {
       {
         korisnikId: 3,
         sobaId: 2,
-        datumPocetka: 10/10/2022,
-        datumKraja: 11/11/2022
+        datumPocetka: "2022-4-4",
+        datumKraja: "2022-4-7"
       },
       {
         korisnikId: 1,
         sobaId: 1,
-        datumPocetka: 1/1/2023,
-        datumKraja: 2/2/2023
+        datumPocetka: "2022-10-10",
+        datumKraja: "2022-10-11"
       },
       {
         korisnikId: 5,
         sobaId: 1,
-        datumPocetka: 10/10/2022,
-        datumKraja: 11/11/2022
+        datumPocetka: "2022-5-5",
+        datumKraja: "2022-5-7"
       },
       {
         korisnikId: 4,
         sobaId: 2,
-        datumPocetka: 11/11/2022,
-        datumKraja: 12/12/2022
+        datumPocetka: "2022-5-10",
+        datumKraja: "2022-6-10"
       },
       {
         korisnikId: 3,
         sobaId: 4,
-        datumPocetka: 6/6/2022,
-        datumKraja: 7/7/2022
+        datumPocetka: "2022-10-10",
+        datumKraja: "2022-10-15"
       }
     ])
   },

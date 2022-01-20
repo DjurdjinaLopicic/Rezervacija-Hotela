@@ -10,7 +10,7 @@ const app = express();
 
 
 var corsOptions = {
-    origin: ['http://127.0.0.1:8000', 'http://127.0.0.1:8500'],
+    origin: ['http://127.0.0.1:8006','http://127.0.0.1:8005','http://127.0.0.1:8004','http://127.0.0.1:8003','http://127.0.0.1:8002','http://127.0.0.1:8001','http://127.0.0.1:8000', 'http://127.0.0.1:8500'],
     optionsSuccessStatus: 200
 }
 
@@ -162,10 +162,10 @@ app.post('/login', (req, res) => {
 
                         res.json({ token: token });
                     }else{
-                        res.status(400).json({msg: "Invalid credentials"});
+                        res.status(400).json({msg: "Invalid password"});
                     }
                 })
-                .catch( err => res.status(500).json(err) )
+                .catch( err => res.status(400).json({msg: "Invalid username"}) )
         }
     })
         

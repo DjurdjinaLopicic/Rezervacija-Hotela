@@ -17,7 +17,13 @@ module.exports = {
       },
       gradId:{
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Gradovis',
+          key: 'id',
+          as: 'gradId',
+        }
       },
       createdAt: {
         allowNull: false,

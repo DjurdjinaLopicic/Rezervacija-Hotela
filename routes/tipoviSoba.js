@@ -2,9 +2,8 @@ const express = require("express");
 const path = require('path');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const admin = require('./routes/admin');
 
-const app = express();
+const tipoviSoba = express.Router();;
 
 function getCookies(req){
     if(req.headers.cookie == null) return {};
@@ -25,16 +24,17 @@ function authTokena(req, res, next){
     const token = cookies['token'];
 
 
-    if(token == null) return res.redirect('/logina');
+    if(token == null) return res.redirect('/login');
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if(err) return res.redirect('/loginb');
+        if(err) return res.redirect('/login');
 
 
         req.user = user;
         next();
     })
 }
+
 const request = require('request');
 
 function izvuciTip(req) {
@@ -68,23 +68,30 @@ async function autorizuj(req, res, next){
 
 }
 
-
-
-app.use('/admin', admin);
-
-
-
-app.get('/', authTokena, autorizuj ,(req, res) => {
-    res.redirect('/admin');
+tipoviSoba.get('/', authTokena, autorizuj ,(req, res) => {
+    res.sendFile('tipoviSoba.html', {root: './static/tipoviSoba'});
 })
 
-
-app.get('/login', (req, res) => {
+tipoviSoba.get('/login' ,(req, res) => {
     res.sendFile('login.html', {root: './static'})
 })
 
-app.use(express.static(path.join(__dirname, 'static')));
+tipoviSoba.get('/prikazi', authTokena, autorizuj ,(req, res) => {
+    res.sendFile('tipSobe.html', {root: './static/tipoviSoba'});
+})
 
-app.listen( {port:8003}, async() => {
-    
-} )
+tipoviSoba.get('/obrisi', authTokena, autorizuj ,(req, res) => {
+    res.sendFile('brisiTipSobe.html', {root: './static/tipoviSoba'});
+})
+
+tipoviSoba.get('/novi', authTokena, autorizuj ,(req, res) => {
+    res.sendFile('noviTipSobe.html', {root: './static/tipoviSoba'});
+})
+
+tipoviSoba.get('/izmeni', authTokena, autorizuj ,(req, res) => {
+    res.sendFile('izmeniTipSobe.html', {root: './static/tipoviSoba'});
+})
+
+tipoviSoba.use(express.static(path.join(__dirname, 'static')));
+
+module.exports = tipoviSoba;

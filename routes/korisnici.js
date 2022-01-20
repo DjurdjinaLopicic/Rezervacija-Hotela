@@ -2,9 +2,8 @@ const express = require("express");
 const path = require('path');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const admin = require('./routes/admin');
 
-const app = express();
+const korisnici = express.Router();;
 
 function getCookies(req){
     if(req.headers.cookie == null) return {};
@@ -25,16 +24,17 @@ function authTokena(req, res, next){
     const token = cookies['token'];
 
 
-    if(token == null) return res.redirect('/logina');
+    if(token == null) return res.redirect('/login');
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if(err) return res.redirect('/loginb');
+        if(err) return res.redirect('/login');
 
 
         req.user = user;
         next();
     })
 }
+
 const request = require('request');
 
 function izvuciTip(req) {
@@ -60,31 +60,37 @@ async function autorizuj(req, res, next){
     const tip = await izvuciTip(req);
 
 
-    if(tip < 0) return res.redirect('/login');
-    if(tip == 2) return res.redirect('/login');
+    if(tip != 0) return res.redirect('/admin');
 
     next();
 
 
 }
 
-
-
-app.use('/admin', admin);
-
-
-
-app.get('/', authTokena, autorizuj ,(req, res) => {
-    res.redirect('/admin');
+korisnici.get('/', authTokena , autorizuj, (req, res) => {
+    res.sendFile('korisnici.html', {root: './static/korisnici'});
 })
 
-
-app.get('/login', (req, res) => {
+korisnici.get('/login', (req, res) => {
     res.sendFile('login.html', {root: './static'})
 })
 
-app.use(express.static(path.join(__dirname, 'static')));
+korisnici.get('/prikazi', authTokena,autorizuj , (req, res) => {
+    res.sendFile('korisnik.html', {root: './static/korisnici'});
+})
 
-app.listen( {port:8003}, async() => {
-    
-} )
+korisnici.get('/obrisi', authTokena, autorizuj ,(req, res) => {
+    res.sendFile('brisiKorisnika.html', {root: './static/korisnici'});
+})
+
+korisnici.get('/novi', authTokena,autorizuj , (req, res) => {
+    res.sendFile('noviKorisnik.html', {root: './static/korisnici'});
+})
+
+korisnici.get('/izmeni', authTokena,autorizuj , (req, res) => {
+    res.sendFile('izmeniKorisnik.html', {root: './static/korisnici'});
+})
+
+korisnici.use(express.static(path.join(__dirname, 'static')));
+
+module.exports = korisnici;

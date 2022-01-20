@@ -2,9 +2,22 @@ const express = require("express");
 const path = require('path');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const admin = require('./routes/admin');
+const sobe = require('./sobe');
+const gradovi = require('./gradovi');
+const hoteli = require('./hoteli');
+const tipoviSoba = require('./tipoviSoba');
+const rezervacije = require('./rezervacije');
+const korisnici = require('./korisnici');
 
-const app = express();
+
+const admin = express.Router();
+
+admin.use('/sobe', sobe);
+admin.use('/gradovi', gradovi);
+admin.use('/hoteli', hoteli);
+admin.use('/tipoviSoba', tipoviSoba);
+admin.use('/rezervacije', rezervacije);
+admin.use('/korisnici', korisnici);
 
 function getCookies(req){
     if(req.headers.cookie == null) return {};
@@ -25,16 +38,17 @@ function authTokena(req, res, next){
     const token = cookies['token'];
 
 
-    if(token == null) return res.redirect('/logina');
+    if(token == null) return res.redirect('/login');
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if(err) return res.redirect('/loginb');
+        if(err) return res.redirect('/login');
 
 
         req.user = user;
         next();
     })
 }
+
 const request = require('request');
 
 function izvuciTip(req) {
@@ -68,23 +82,16 @@ async function autorizuj(req, res, next){
 
 }
 
-
-
-app.use('/admin', admin);
-
-
-
-app.get('/', authTokena, autorizuj ,(req, res) => {
-    res.redirect('/admin');
+admin.get('/' , authTokena, autorizuj, (req, res) => {
+    const cookies = getCookies(req);
+    console.log(cookies);
+    res.sendFile('index.html', {root: './static'});
 })
 
-
-app.get('/login', (req, res) => {
+admin.get('/login', (req, res) => {
     res.sendFile('login.html', {root: './static'})
 })
 
-app.use(express.static(path.join(__dirname, 'static')));
+admin.use(express.static(path.join(__dirname, 'static')));
 
-app.listen( {port:8003}, async() => {
-    
-} )
+module.exports = admin;

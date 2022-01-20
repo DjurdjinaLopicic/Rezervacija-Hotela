@@ -16,13 +16,25 @@ module.exports = {
           min:0
         }
       },
-      tipSobeId: {
+      tipSobeID: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'TipoviSobas',
+          key: 'id',
+          as: 'tipSobeId',
+        }
       },
       hotelId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Hotelis',
+          key: 'id',
+          as: 'hotelId',
+        }
       },
       createdAt: {
         allowNull: false,
