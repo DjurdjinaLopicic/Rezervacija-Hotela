@@ -25,10 +25,10 @@ function authTokena(req, res, next){
     const token = cookies['token'];
 
 
-    if(token == null) return res.redirect('/logina');
+    if(token == null) return res.redirect('/login');
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if(err) return res.redirect('/loginb');
+        if(err) return res.redirect('/login');
 
 
         req.user = user;
@@ -60,8 +60,8 @@ async function autorizuj(req, res, next){
     const tip = await izvuciTip(req);
 
 
-    if(tip < 0) return res.redirect('/login');
-    if(tip == 2) return res.redirect('/login');
+    if(tip < 0) return res.redirect('/admin/login');
+    if(tip == 2) return res.redirect('/admin/login');
 
     next();
 
@@ -73,7 +73,7 @@ async function autorizuj(req, res, next){
 app.use('/admin', admin);
 
 
-
+/*
 app.get('/', authTokena, autorizuj ,(req, res) => {
     res.redirect('/admin');
 })
@@ -81,10 +81,10 @@ app.get('/', authTokena, autorizuj ,(req, res) => {
 
 app.get('/login', (req, res) => {
     res.sendFile('login.html', {root: './static'})
-})
+})*/
 
 app.use(express.static(path.join(__dirname, 'static')));
 
-app.listen( {port:8003}, async() => {
+app.listen( {port:8005}, async() => {
     
 } )

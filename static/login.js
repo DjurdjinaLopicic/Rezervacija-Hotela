@@ -15,13 +15,14 @@ function init() {
         }) 
             .then( res => res.json() )
             .then( el => {
+                console.log(el)
                 if (el.msg) {
                     alert(el.msg);
                 }else if(el[0] != null && message in el[0]){
                     alert(el[0].message);
                 } else {
                     document.cookie = `token=${el.token};SameSite=Lax`;
-                    window.location.href = '/';
+                    window.location.href = '/admin/';
                 }
             });
     });

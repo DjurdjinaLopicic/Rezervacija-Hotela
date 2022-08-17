@@ -1,39 +1,34 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, DataTypes) => {
-    await queryInterface.createTable('Rezervacijes', {
+    await queryInterface.createTable('Slikes', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      datumPocetka: {
-        type: DataTypes.DATEONLY,
-        allowNull: false
+      url: {
+        type: DataTypes.STRING(4000)
       },
-      datumKraja: {
-        type: DataTypes.DATEONLY,
-        allowNull: false
-      },
-      sobaId: {
+      hotelId:{
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Hotelis',
+          key: 'id',
+          as: 'hotelId',
+        }
+      },
+      sobaId:{
+        type: DataTypes.INTEGER,
+        allowNull: true,
         onDelete: 'CASCADE',
         references: {
           model: 'Sobes',
           key: 'id',
-          as: 'sobaId'
-        }
-      },
-      korisnikId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'Korisnicis',
-          key: 'id',
-          as: 'korisnikId',
+          as: 'sobaId',
         }
       },
       createdAt: {
@@ -47,6 +42,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, DataTypes) => {
-    await queryInterface.dropTable('Rezervacijes');
+    await queryInterface.dropTable('Slikes');
   }
 };

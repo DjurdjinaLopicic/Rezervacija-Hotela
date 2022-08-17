@@ -17,11 +17,11 @@ module.exports = (sequelize, DataTypes) => {
   };
   Rezervacije.init({
     datumPocetka: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false
     },
     datumKraja: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false
     }
   }, {

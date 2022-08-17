@@ -16,6 +16,13 @@ module.exports = {
           min:0
         }
       },
+      broj: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          min:1
+        }
+      },
       tipSobeID: {
         type: DataTypes.INTEGER,
         allowNull: false,

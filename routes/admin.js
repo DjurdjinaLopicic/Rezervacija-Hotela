@@ -19,6 +19,7 @@ admin.use('/tipoviSoba', tipoviSoba);
 admin.use('/rezervacije', rezervacije);
 admin.use('/korisnici', korisnici);
 
+
 function getCookies(req){
     if(req.headers.cookie == null) return {};
 
@@ -38,10 +39,10 @@ function authTokena(req, res, next){
     const token = cookies['token'];
 
 
-    if(token == null) return res.redirect('/login');
+    if(token == null) return res.redirect('/admin/login');
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if(err) return res.redirect('/login');
+        if(err) return res.redirect('/admin/login');
 
 
         req.user = user;
@@ -50,6 +51,7 @@ function authTokena(req, res, next){
 }
 
 const request = require('request');
+
 
 function izvuciTip(req) {
     return new Promise((resolve, reject) => {

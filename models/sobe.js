@@ -10,11 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({Hoteli, TipoviSoba, Rezervacije}) {
+    static associate({Hoteli, TipoviSoba, Rezervacije, Slike}) {
       // define association here
       this.belongsTo(Hoteli, {foreignKey: 'hotelId', as: 'hotel'});
       this.belongsTo(TipoviSoba, {foreignKey: 'tipSobeId', as: 'tipSobe'});
       this.hasMany(Rezervacije, {  foreignKey: 'sobaId', as: 'rezervacije', onDelete:'cascade', hooks: true} );
+      this.hasMany(Slike, {  foreignKey: 'sobaId', as: 'slike', onDelete:'cascade', hooks: true} );
     }
   };
   Sobe.init({
@@ -24,6 +25,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         min:0
+      }
+    },    
+    broj: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        min:1
       }
     }
   }, {
