@@ -73,12 +73,12 @@ async function autorizuj(req, res, next){
 app.use('/admin', admin);
 
 
-/*
+
 app.get('/', authTokena, autorizuj ,(req, res) => {
     res.redirect('/admin');
 })
 
-
+/*
 app.get('/login', (req, res) => {
     res.sendFile('login.html', {root: './static'})
 })*/
