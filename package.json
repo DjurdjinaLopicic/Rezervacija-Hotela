@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "app": "nodemon app.js",
     "auth": "nodemon app_auth.js",
-    "rest": "nodemon app_rest.js"
+    "rest": "nodemon app_rest.js",
+    "start": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
