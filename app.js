@@ -85,6 +85,8 @@ app.get('/login', (req, res) => {
 
 app.use(express.static(path.join(__dirname, 'static')));
 
-app.listen( {port:8005}, async() => {
+port = process.env.PORT || 8005;
+
+app.listen( {port:port}, async() => {
     
 } )
