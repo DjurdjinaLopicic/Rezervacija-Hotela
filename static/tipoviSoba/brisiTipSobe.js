@@ -9,7 +9,7 @@ function init(){
     const cookies = document.cookie.split('=');
     const token = cookies[cookies.length - 1];
 
-    fetch(`http://127.0.0.1:8500/tipoviSoba/${id}`, {
+    fetch(`https://rezervacija-hotela-rest.herokuapp.com/tipoviSoba/${id}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`

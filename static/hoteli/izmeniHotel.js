@@ -14,7 +14,7 @@ function init() {
 
 
     
-    fetch(`http://127.0.0.1:8500/hoteli/${id}`, {
+    fetch(`https://rezervacija-hotela-rest.herokuapp.com/hoteli/${id}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -33,7 +33,7 @@ function init() {
 
 
 
-        fetch('http://127.0.0.1:8500/gradovi', {
+        fetch('https://rezervacija-hotela-rest.herokuapp.com/gradovi', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -74,7 +74,7 @@ function init() {
         }else if(data.opis == ""){
             alert("Opis ne sme biti prazan");
         }else{
-            fetch(`http://127.0.0.1:8500/hoteli/${id}`, {
+            fetch(`https://rezervacija-hotela-rest.herokuapp.com/hoteli/${id}`, {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json',

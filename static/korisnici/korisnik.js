@@ -15,7 +15,7 @@ function init(){
     const cookies = document.cookie.split('=');
     const token = cookies[cookies.length - 1];
 
-    fetch(`http://127.0.0.1:8500/korisnici/${id}`, {
+    fetch(`https://rezervacija-hotela-rest.herokuapp.com/korisnici/${id}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }

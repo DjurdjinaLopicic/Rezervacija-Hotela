@@ -13,7 +13,7 @@ function init() {
     const urlParams = new URLSearchParams(queryString);
     id = urlParams.get('id');
 
-    fetch(`http://127.0.0.1:8500/gradovi/${id}`, {
+    fetch(`https://rezervacija-hotela-rest.herokuapp.com/gradovi/${id}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -40,7 +40,7 @@ function init() {
         if(data.naziv == ""){
             alert("Naziv ne sme biti prazan");
         }else{
-            fetch(`http://127.0.0.1:8500/gradovi/${id}`, {
+            fetch(`https://rezervacija-hotela-rest.herokuapp.com/gradovi/${id}`, {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json',

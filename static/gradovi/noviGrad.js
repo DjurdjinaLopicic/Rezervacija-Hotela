@@ -21,7 +21,7 @@ function init() {
         if(data.naziv == ""){
             alert("Naziv ne sme biti prazan");
         }else{
-            fetch('http://127.0.0.1:8500/gradovi', {
+            fetch('https://rezervacija-hotela-rest.herokuapp.com/gradovi', {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',

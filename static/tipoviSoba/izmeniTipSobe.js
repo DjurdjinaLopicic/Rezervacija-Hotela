@@ -16,7 +16,7 @@ function init() {
 
     
 
-    fetch(`http://127.0.0.1:8500/tipoviSoba/${id}`, {
+    fetch(`https://rezervacija-hotela-rest.herokuapp.com/tipoviSoba/${id}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -42,7 +42,7 @@ function init() {
         if(data.tip == ""){
             alert("Tip sobe ne sme biti prazan");
         }else{
-            fetch(`http://127.0.0.1:8500/tipoviSoba/${id}`, {
+            fetch(`https://rezervacija-hotela-rest.herokuapp.com/tipoviSoba/${id}`, {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json',

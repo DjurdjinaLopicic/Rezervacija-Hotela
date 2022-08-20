@@ -5,7 +5,7 @@ function init() {
     const cookies = document.cookie.split('=');
     const token = cookies[cookies.length - 1];
     
-        fetch('http://127.0.0.1:8500/gradovi', {
+        fetch('https://rezervacija-hotela-rest.herokuapp.com/gradovi', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -46,7 +46,7 @@ function init() {
         }else if(data.opis == ""){
             alert("Opis ne sme biti prazan");
         }else{
-            fetch('http://127.0.0.1:8500/hoteli', {
+            fetch('https://rezervacija-hotela-rest.herokuapp.com/hoteli', {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',

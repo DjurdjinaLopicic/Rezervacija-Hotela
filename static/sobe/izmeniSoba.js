@@ -13,7 +13,7 @@ function init() {
     id = urlParams.get('id');
 
 
-    fetch(`http://127.0.0.1:8500/sobe/${id}`, {
+    fetch(`https://rezervacija-hotela-rest.herokuapp.com/sobe/${id}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -34,7 +34,7 @@ function init() {
 
 
 
-        fetch('http://127.0.0.1:8500/hoteli', {
+        fetch('https://rezervacija-hotela-rest.herokuapp.com/hoteli', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -50,7 +50,7 @@ function init() {
                 op.innerHTML = el.naziv;
                 hoteli.appendChild(op);
             });
-            fetch('http://127.0.0.1:8500/tipoviSoba', {
+            fetch('https://rezervacija-hotela-rest.herokuapp.com/tipoviSoba', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -92,7 +92,7 @@ function init() {
         }else if(data.opis == ""){
             alert("Opis ne sme biti prazan");
         }else{
-            fetch(`http://127.0.0.1:8500/sobe/${id}`, {
+            fetch(`https://rezervacija-hotela-rest.herokuapp.com/sobe/${id}`, {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json',

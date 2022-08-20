@@ -31,7 +31,7 @@ function init() {
         }else if(data.prezime == ""){
             alert("Prezime ne sme biti prazno");
         }else{
-            fetch('http://127.0.0.1:8500/korisnici', {
+            fetch('https://rezervacija-hotela-rest.herokuapp.com/korisnici', {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',

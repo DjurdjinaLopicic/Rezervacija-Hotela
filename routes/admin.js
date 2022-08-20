@@ -63,7 +63,7 @@ function izvuciTip(req) {
         console.log("c");
         id = decoded.userId;
         console.log("d");
-        request("http://127.0.0.1:8500/korisnici/"+id, {'auth': {"bearer": token}, "json":true}, (error, response, body) => {
+        request("https://rezervacija-hotela-rest.herokuapp.com/korisnici/"+id, {'auth': {"bearer": token}, "json":true}, (error, response, body) => {
             console.log(body.tip);
             if(error) resolve(-1);
             else if(response.statusCode != 200) resolve(-1);

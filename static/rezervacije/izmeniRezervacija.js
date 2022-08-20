@@ -11,7 +11,7 @@ function init() {
     const urlParams = new URLSearchParams(queryString);
     id = urlParams.get('id');
 
-    fetch(`http://127.0.0.1:8500/rezervacije/${id}`, {
+    fetch(`https://rezervacija-hotela-rest.herokuapp.com/rezervacije/${id}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -27,7 +27,7 @@ function init() {
 
     });
 
-        fetch('http://127.0.0.1:8500/korisnici', {
+        fetch('https://rezervacija-hotela-rest.herokuapp.com/korisnici', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -43,7 +43,7 @@ function init() {
                 op.innerHTML = el.username;
                 korisnici.appendChild(op);
             });
-            fetch('http://127.0.0.1:8500/sobe', {
+            fetch('https://rezervacija-hotela-rest.herokuapp.com/sobe', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -88,7 +88,7 @@ function init() {
             }else if(data.datumPocetka > data.datumKraja){
                 alert("Datum pocetka mora biti pre datuma kraja");
             }else{
-            fetch(`http://127.0.0.1:8500/rezervacije/${id}`, {
+            fetch(`https://rezervacija-hotela-rest.herokuapp.com/rezervacije/${id}`, {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json',
