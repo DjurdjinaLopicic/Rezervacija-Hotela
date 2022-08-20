@@ -83,7 +83,7 @@ app.get('/', authTokena, autorizuj ,(req, res) => {
 app.get('/login', (req, res) => {
     res.sendFile('login.html', {root: './static'})
 })*/
-app.use(express.static(path.join(__dirname, 'static')));
+//app.use(express.static(path.join(__dirname, 'static')));
 
 const staticMdl = express.static(path.join(__dirname, 'dist'));
 
