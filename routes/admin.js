@@ -42,7 +42,7 @@ function authTokena(req, res, next){
     if(token == null) return res.redirect('/admin/login');
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if(err) return res.redirect('/admin/login');
+  //      if(err) return res.redirect('/admin/login');
 
 
         req.user = user;
@@ -76,8 +76,8 @@ async function autorizuj(req, res, next){
     const tip = await izvuciTip(req);
 
 
-    if(tip < 0) return res.redirect('/login');
-    if(tip == 2) return res.redirect('/login');
+ //   if(tip < 0) return res.redirect('/admin/login');
+  //  if(tip == 2) return res.redirect('/admin/login');
 
     next();
 
