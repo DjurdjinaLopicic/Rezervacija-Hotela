@@ -3,6 +3,7 @@ const path = require('path');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const admin = require('./routes/admin');
+const history = require('connect-history-api-fallback');
 
 const app = express();
 
@@ -82,8 +83,14 @@ app.get('/', authTokena, autorizuj ,(req, res) => {
 app.get('/login', (req, res) => {
     res.sendFile('login.html', {root: './static'})
 })*/
-
 app.use(express.static(path.join(__dirname, 'static')));
+
+const staticMdl = express.static(path.join(__dirname, 'dist'));
+
+app.use(staticMdl);
+app.use(history({index: '/index.html'}));
+app.use(staticMdl);
+
 
 port = process.env.PORT || 8005;
 
