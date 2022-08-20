@@ -91,6 +91,7 @@ app.use(staticMdl);
 app.use(history({index: '/index.html'}));
 app.use(staticMdl);
 
+app.use(express.static(path.join(__dirname, 'static')));
 
 port = process.env.PORT || 8005;
 
