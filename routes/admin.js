@@ -35,7 +35,6 @@ function getCookies(req){
 }
 
 function authTokena(req, res, next){
-    next();
     const cookies = getCookies(req);
     const token = cookies['token'];
 
@@ -77,8 +76,8 @@ async function autorizuj(req, res, next){
     const tip = await izvuciTip(req);
 
 
- //   if(tip < 0) return res.redirect('/admin/login');
-  //  if(tip == 2) return res.redirect('/admin/login');
+    if(tip < 0) return res.redirect('/admin/login');
+    if(tip == 2) return res.redirect('admin/login');
 
     next();
 
