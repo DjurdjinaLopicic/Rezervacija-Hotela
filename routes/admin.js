@@ -94,6 +94,6 @@ admin.get('/login', (req, res) => {
     res.sendFile('login.html', {root: './static'})
 })
 
-admin.use(express.static(path.join(__dirname, 'static')));
+admin.use(express.static(path.join(__dirname, './static')));
 
 module.exports = admin;
