@@ -8,7 +8,7 @@ function init() {
             password: document.getElementById('password').value
         };
 
-        fetch('https://rezervacija-hotela-auth.herokuapp.com//login', {
+        fetch('https://rezervacija-hotela-auth.herokuapp.com/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
