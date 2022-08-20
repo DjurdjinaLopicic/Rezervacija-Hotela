@@ -26,10 +26,10 @@ function authTokena(req, res, next){
     const token = cookies['token'];
 
 
-    if(token == null) return res.redirect('/login');
+    if(token == null) return res.redirect('/admin/login');
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if(err) return res.redirect('/login');
+        if(err) return res.redirect('/admin/login');
 
 
         req.user = user;
